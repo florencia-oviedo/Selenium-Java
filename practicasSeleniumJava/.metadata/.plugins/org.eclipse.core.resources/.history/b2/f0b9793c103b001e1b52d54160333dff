@@ -1,0 +1,19 @@
+package iframes;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+public class EsperasClase {
+	WebDriver navegador = new ChromeDriver();
+	
+	@Test
+	public void esperaImplicita() {
+		navegador.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+		navegador.get("http://www.automationpractice.pl/index.php");
+		navegador.manage().window().maximize();
+		Actions mouseActions  = new Actions(navegador);
+	}
+}

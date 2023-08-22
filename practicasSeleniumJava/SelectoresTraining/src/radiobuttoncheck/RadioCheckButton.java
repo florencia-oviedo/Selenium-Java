@@ -1,0 +1,39 @@
+package radiobuttoncheck;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+
+public class RadioCheckButton {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\Florencia Oviedo\\DriverNavegadores\\chromedriver.exe");
+		
+		//Iniciamos el navegador
+		WebDriver navegador = new ChromeDriver();
+		
+		navegador.get("https://winstoncastillo.com/robot-selenium/index.php?route=account/register");
+		navegador.findElement(By.cssSelector("#content > form > fieldset:nth-child(3) > div > div > label:nth-child(1) > input[type=radio]")).click();
+		Assert.assertFalse(navegador.findElement(By.cssSelector("#content > form > fieldset:nth-child(3) > div > div > label:nth-child(2) > input[type=radio]")).isSelected());
+		//el metodo is selected devuelve true si esta seleccionado y falso cuando no lo esta
+		//el assertFalse (false) y la prueba pasa ok ya que ese boton no lo seleccionamos
+		//si uso .assertTrue espera un true y si es false salta el error
+		
+		
+		//checkbox primero sin marcar, verificamos, luego marcamos y verificamos
+		
+		Assert.assertFalse(navegador.findElement(By.cssSelector("#content > form > div > div > input[type=checkbox]:nth-child(2)")).isSelected());
+		
+		navegador.findElement(By.cssSelector("#content > form > div > div > input[type=checkbox]:nth-child(2)")).click();
+		
+		Assert.assertTrue(navegador.findElement(By.cssSelector("#content > form > div > div > input[type=checkbox]:nth-child(2)")).isSelected());
+		
+		//cerrar el navegador
+		navegador.close();
+		
+		
+	}
+
+}

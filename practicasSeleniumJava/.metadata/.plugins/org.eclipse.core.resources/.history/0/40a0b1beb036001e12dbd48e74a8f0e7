@@ -1,0 +1,21 @@
+package com.qaschool.tipsautm;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class ListaAleatoria {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\Florencia Oviedo\\DriverNavegadores\\chromedriver.exe");
+		
+		//Iniciamos el navegador
+		WebDriver navegador = new ChromeDriver();
+		
+		navegador.get("http://www.reddit.com");
+		//crear el select estatico o lista estatica de un menu desplegable
+		
+
+	}
+
+}

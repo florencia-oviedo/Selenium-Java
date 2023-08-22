@@ -1,0 +1,30 @@
+package com.teamautomation.endtoend;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+public class AddingItemsCart {
+
+	public static void main(String[] args) {
+		// Titulo: Agregar productos al carrito
+		
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\Florencia Oviedo\\DriverNavegadores\\chromedriver.exe");
+		
+		//Iniciamos el navegador
+		WebDriver navegador = new ChromeDriver();
+		
+		navegador.get("https://www.winstoncastillo.com/robot-selenium/");
+		navegador.manage().window().maximize();
+		
+		
+		
+		navegador.findElement(By.cssSelector("#content > div.row > div:nth-child(1) > div > div.button-group > button:nth-child(2)")).click();
+		
+		
+		
+		
+	}
+
+}

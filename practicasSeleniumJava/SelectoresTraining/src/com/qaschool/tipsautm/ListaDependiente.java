@@ -1,0 +1,34 @@
+package com.qaschool.tipsautm;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class ListaDependiente {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\Florencia Oviedo\\DriverNavegadores\\chromedriver.exe");
+		
+		//Iniciamos el navegador
+		WebDriver navegador = new ChromeDriver();
+		
+		navegador.get("http://www.codigopostal.gob.ec/");
+		//lista que depende de otra lista
+		navegador.manage().window().maximize();
+		//hacemos click en el boton desplegable
+		navegador.findElement(By.xpath("/html/body/div[1]/section/div[4]/article[1]/div[1]/div[1]/div/p[1]/span/span/span/span")).click();
+		Thread.sleep(2000);
+		//click en la opcion PICHINCHA
+		navegador.findElement(By.xpath("/html/body/div[5]/div/ul/li[19]")).click();//PICHINCHA
+		//navegador.findElement(By.linkText("PICHINCHA")).click(); investigar porque no anda con linktext
+		
+		Thread.sleep(2000);
+		//ahora la seccion CARTON
+		navegador.findElement(By.xpath("/html/body/div[1]/section/div[4]/article[1]/div[1]/div[1]/div/p[2]/span/span/span/span")).click();
+		Thread.sleep(2000);//espera un momento para cargar la clase
+		navegador.findElement(By.xpath("/html/body/div[13]/div/ul/li[6]")).click();
+
+	}
+
+}

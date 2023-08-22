@@ -1,0 +1,10 @@
+package com.teamautomation.endtoend;
+
+public class Deleting_items {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

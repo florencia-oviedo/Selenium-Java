@@ -1,0 +1,32 @@
+package testcase;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class FormularioContacto extends Base {
+	
+	@BeforeTest
+	public void openBrowser() {
+		navegador.get("https://winstoncastillo.com/robot-selenium/index.php?route=information/contact");
+		
+	}
+	
+	@AfterTest
+	public void closeBrowser() {
+		navegador.close();
+	}
+	
+	@Test
+	public void aplicarDataForm() throws IOException {
+		ArrayList<String> datos = datosLeidos.getData();
+		int number = datos.size();
+		System.out.println(number);
+	}
+	
+	
+	
+}

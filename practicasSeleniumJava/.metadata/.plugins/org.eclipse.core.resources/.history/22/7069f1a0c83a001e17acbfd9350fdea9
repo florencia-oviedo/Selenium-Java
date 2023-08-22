@@ -1,0 +1,12 @@
+package iframes;
+
+
+public class IframesPruebas {
+	
+	WebDriver navegador = new ChromeDriver();
+	
+	@Test
+	public void trabajarConIframe() {
+		
+	}
+}

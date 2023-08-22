@@ -1,0 +1,49 @@
+package com.teamautomation.endtoend;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+
+
+public class AddingItemsCart {
+
+	public static void main(String[] args) throws InterruptedException {
+		// Titulo: Agregar productos al carrito
+		
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\Florencia Oviedo\\DriverNavegadores\\chromedriver.exe");
+		
+		//Iniciamos el navegador
+		WebDriver navegador = new ChromeDriver();
+		
+		navegador.get("https://www.winstoncastillo.com/robot-selenium/");
+		navegador.manage().window().maximize();
+		
+		List<WebElement> objetoComparar = navegador.findElements(By.cssSelector("#common-home > div.alert.alert-success.alert-dismissible"));
+		//si esta lista esta vacia, no te debe pedir loguearte sin apretar nada
+		Assert.assertTrue(objetoComparar.isEmpty());
+		
+		navegador.findElement(By.cssSelector("#content > div.row > div:nth-child(1) > div > div.button-group > button:nth-child(2)")).click();
+		
+		Thread.sleep(2000);
+		
+		String textoLogueoHome = navegador.findElement(By.cssSelector("#common-home > div.alert.alert-success.alert-dismissible")).getText();
+		String textoFinal = textoLogueoHome.substring(0,70);//porq hay una x de mas en el final
+		
+		//comparar el texto de q te pida loguearte
+		//Assert.assertEquals("You must login or create an account to save Macbook to your wish list!", textoFinal);
+		
+		System.out.println(textoLogueoHome);
+		
+		//click en el carro antes ver el carrito en 0
+		System.out.println(navegador.findElement(By.cssSelector("#cart > button")).getText());
+		
+		
+		
+		
+	}
+
+}

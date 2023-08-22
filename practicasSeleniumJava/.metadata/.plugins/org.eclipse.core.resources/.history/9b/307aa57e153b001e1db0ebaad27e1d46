@@ -1,0 +1,35 @@
+package iframes;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class EsperasClase {
+	WebDriver navegador = new ChromeDriver();
+	
+	@Test
+	public void esperaImplicitaExplicita() {
+		
+		//Esta es una espera implicita
+		navegador.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+		
+		WebDriverWait espera = new WebDriverWait(navegador,10);
+		
+		navegador.get("http://www.automationpractice.pl/index.php");
+		navegador.manage().window().maximize();
+		navegador.findElement(By.xpath("//*[@id=\"home-page-tabs\"]/li[2]/a")).click();
+		Actions mouseActions  = new Actions(navegador);
+		WebElement elementoProducto = navegador.findElement(By.xpath("//*[@id=\"blockbestsellers\"]/li[1]/div/div[1]/div/a[1]/img"));
+		mouseActions.moveToElement(elementoProducto).perform();
+		navegador.findElement(By.xpath("//*[@id=\"blockbestsellers\"]/li[1]/div/div[2]/div[2]/a[1]")).click();
+		System.out.println("Texto header: "+navegador.findElement(By.xpath("//*[@id=\"index\"]/div[2]/div/div/div/div/p")).getText());
+		navegador.close();
+	
+	}
+}

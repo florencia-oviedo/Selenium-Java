@@ -1,0 +1,28 @@
+package iframes;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+import org.openqa.selenium.interactions.Actions;
+
+public class EsperasClase {
+	WebDriver navegador = new ChromeDriver();
+	
+	@Test
+	public void esperaImplicita() {
+		navegador.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+		navegador.get("http://www.automationpractice.pl/index.php");
+		navegador.manage().window().maximize();
+		navegador.findElement(By.xpath("//*[@id=\"home-page-tabs\"]/li[2]/a")).click();
+		Actions mouseActions  = new Actions(navegador);
+		WebElement elementoProducto = navegador.findElement(By.xpath("//*[@id=\"blockbestsellers\"]/li[1]/div/div[1]/div/a[1]/img"));
+		mouseActions.moveToElement(elementoProducto).perform();
+		navegador.findElement(By.xpath("//*[@id=\"blockbestsellers\"]/li[1]/div/div[2]/div[2]/a[1]")).click();
+		
+		
+	}
+}

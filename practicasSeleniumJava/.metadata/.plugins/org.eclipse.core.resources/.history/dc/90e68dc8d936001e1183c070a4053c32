@@ -1,0 +1,10 @@
+package com.qaschool.tipsautm;
+
+public class ListaDependiente {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,177 @@
+package testcases;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
+import org.openqa.selenium.Dimension;
+
+public class CasoCarrito extends Base {
+	
+	@BeforeSuite
+	public void abrirNavegador() {
+		navegador.get("http://www.automationpractice.pl/index.php");
+		navegador.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+		Dimension driverSize = new Dimension(480,615);
+		navegador.manage().window().setSize(driverSize);
+	}
+	
+	@Test
+	public void elegirArticulosAzarCarritoCompras() {
+		Assert.assertEquals(navegador.getTitle(),"My Shop");
+		navegador.findElement(By.xpath("//*[@id=\"home-page-tabs\"]/li[2]/a")).click();
+		WebElement contenedorDeProductos = navegador.findElement(By.id("blockbestsellers"));
+		listaProductos = contenedorDeProductos.findElements(By.tagName("li"));
+		//System.out.println(listaProductos.size()); 6
+		
+		if(listaProductos.size()<4) {
+			cantidadLista = listaProductos.size();
+		}else {
+			cantidadLista = 3;
+		}
+		
+		for(int i=0; i<cantidadLista;i++) {
+			numeroAlAzar = (int) (Math.random()*listaProductos.size() +1);
+			if(productosAlAzar.contains(numeroAlAzar)) {
+				i--;
+			}else {
+				productosAlAzar.add(numeroAlAzar);
+			}
+		}
+		
+		productosAlAzar.forEach(System.out::println);
+		
+		
+	}
+	
+	@Test(dependsOnMethods = {"elegirArticulosAzarCarritoCompras"})
+	public void anadirProductosAlCarrito() {
+		for(int i= 0 ; i < cantidadLista; i++ ) {
+			// //*[@id="blockbestsellers"]/li[1]/div/div[2]/div[2]/a[1]/span
+			// //*[@id="blockbestsellers"]/li[2]/div/div[2]/div[2]/a[1]/span
+			//CAMBIA EN li cada add cart de cada articulo
+			String xPathElemento = String.format("//*[@id=\"blockbestsellers\"]/li[%s]/div/div[2]/div[1]/span", productosAlAzar.get(i));
+			String precioUnitarioDolar= listaProductos.get(productosAlAzar.get(i) -1).findElement(By.xpath(xPathElemento)).getText();
+			String precioUnitario = precioUnitarioDolar.replace("$", "");//saca el $ y reemplaza por nada
+			Double precio = Double.valueOf(precioUnitario);
+			System.out.println("Este es el valor del producto: "+precio);
+			totalProductos+=precio;
+			System.out.println("total de los valores: "+ totalProductos);
+			listaProductos.get(productosAlAzar.get(i) -1).findElement(By.linkText("Add to cart")).click();
+			
+			if(i==0) {
+				mensajeVentana = "Impossible to add the product to the cart.\r\n"
+						+ "textStatus: 'parsererror'\r\n"
+						+ "errorThrown: 'SyntaxError: Unexpected token '<', \"\r\n"
+						+ "\"... is not valid JSON'\r\n"
+						+ "responseText:\r\n"
+						+ "\r\n"
+						+ "Notice: Undefined offset: 1 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+						+ "\r\n"
+						+ "Notice: Undefined offset: 1 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+						+ "\r\n"
+						+ "Notice: Undefined offset: 1 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+						+ "\r\n"
+						+ "Notice: Undefined offset: 1 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+						+ "\r\n"
+						+ "Notice: Undefined offset: 1 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+						+ "\r\n"
+						+ "Notice: Undefined offset: 1 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+						+ "\r\n"
+						+ "Notice: Undefined offset: 1 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+						+ "\r\n"
+						+ "Notice: Undefined offset: 0 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+						+ "\r\n"
+						+ "Notice: Undefined offset: 0 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+						+ "\r\n"
+						+ "Notice: Undefined offset: 0 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+						+ "\r\n"
+						+ "Notice: Undefined offset: 0 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+						+ "{\"products\":[{\"id\":1,\"link\":\"http:\\/\\/www.automationpractice.pl\\/index.php?id_product=1&controller=product#\\/size-s\\/color-orange\",\"quantity\":1,\"image\":\"http:\\/\\/www.automationpractice.pl\\/img\\/p\\/1\\/1-home_default.jpg\",\"image_cart\":\"http:\\/\\/www.automationpractice.pl\\/img\\/p\\/1\\/1-cart_default.jpg\",\"priceByLine\":\"$17\",\"name\":\"Faded Short Sleeve T-shirts\",\"price\":\"$17\",\"price_float\":17,\"idCombination\":1,\"idAddressDelivery\":0,\"is_gift\":false,\"hasAttributes\":true,\"attributes\":\"S, Orange\",\"hasCustomizedDatas\":false,\"customizedDatas\":[]},{\"id\":2,\"link\":\"http:\\/\\/www.automationpractice.pl\\/index.php?id_product=2&controller=product#\\/size-s\\/color-black\",\"quantity\":3,\"image\":\"http:\\/\\/www.automationpractice.pl\\/img\\/p\\/7\\/7-home_default.jpg\",\"image_cart\":\"http:\\/\\/www.automationpractice.pl\\/img\\/p\\/7\\/7-cart_default.jpg\",\"priceByLine\":\"$81\",\"name\":\"Blouse\",\"price\":\"$81\",\"price_float\":81,\"idCombination\":7,\"idAddressDelivery\":0,\"is_gift\":false,\"hasAttributes\":true,\"attributes\":\"S, Black\",\"hasCustomizedDatas\":false,\"customizedDatas\":[]}],\"discounts\":[],\"shippingCost\":\"$7\",\"shippingCostFloat\":7,\"wrappingCost\":\"$0\",\"nbTotalProducts\":4,\"total\":\"$105\",\"productTotal\":\"$98\",\"freeShipping\":\"$0\",\"freeShippingFloat\":0,\"hasError\":false}";
+				mensajeCarrito = "Cart 1 Product";
+			}else {
+				mensajeVentana = "Impossible to add the product to the cart.\r\n"
+						+ "textStatus: 'parsererror'\r\n"
+						+ "errorThrown: 'SyntaxError: Unexpected token '<', \"\r\n"
+						+ "\"... is not valid JSON'\r\n"
+						+ "responseText:\r\n"
+						+ "\r\n"
+						+ "Notice: Undefined offset: 1 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+						+ "\r\n"
+						+ "Notice: Undefined offset: 1 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+						+ "\r\n"
+						+ "Notice: Undefined offset: 1 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+						+ "\r\n"
+						+ "Notice: Undefined offset: 1 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+						+ "\r\n"
+						+ "Notice: Undefined offset: 1 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+						+ "\r\n"
+						+ "Notice: Undefined offset: 1 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+						+ "\r\n"
+						+ "Notice: Undefined offset: 1 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+						+ "\r\n"
+						+ "Notice: Undefined offset: 0 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+						+ "\r\n"
+						+ "Notice: Undefined offset: 0 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+						+ "\r\n"
+						+ "Notice: Undefined offset: 0 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+						+ "\r\n"
+						+ "Notice: Undefined offset: 0 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+						+ "{\"products\":[{\"id\":1,\"link\":\"http:\\/\\/www.automationpractice.pl\\/index.php?id_product=1&controller=product#\\/size-s\\/color-orange\",\"quantity\":1,\"image\":\"http:\\/\\/www.automationpractice.pl\\/img\\/p\\/1\\/1-home_default.jpg\",\"image_cart\":\"http:\\/\\/www.automationpractice.pl\\/img\\/p\\/1\\/1-cart_default.jpg\",\"priceByLine\":\"$17\",\"name\":\"Faded Short Sleeve T-shirts\",\"price\":\"$17\",\"price_float\":17,\"idCombination\":1,\"idAddressDelivery\":0,\"is_gift\":false,\"hasAttributes\":true,\"attributes\":\"S, Orange\",\"hasCustomizedDatas\":false,\"customizedDatas\":[]},{\"id\":2,\"link\":\"http:\\/\\/www.automationpractice.pl\\/index.php?id_product=2&controller=product#\\/size-s\\/color-black\",\"quantity\":3,\"image\":\"http:\\/\\/www.automationpractice.pl\\/img\\/p\\/7\\/7-home_default.jpg\",\"image_cart\":\"http:\\/\\/www.automationpractice.pl\\/img\\/p\\/7\\/7-cart_default.jpg\",\"priceByLine\":\"$81\",\"name\":\"Blouse\",\"price\":\"$81\",\"price_float\":81,\"idCombination\":7,\"idAddressDelivery\":0,\"is_gift\":false,\"hasAttributes\":true,\"attributes\":\"S, Black\",\"hasCustomizedDatas\":false,\"customizedDatas\":[]}],\"discounts\":[],\"shippingCost\":\"$7\",\"shippingCostFloat\":7,\"wrappingCost\":\"$0\",\"nbTotalProducts\":4,\"total\":\"$105\",\"productTotal\":\"$98\",\"freeShipping\":\"$0\",\"freeShippingFloat\":0,\"hasError\":false}";
+				mensajeCarrito = String.format("Cart %s Products", i+1);
+			}
+			//hasta q este elemento no este visible no hagas nada
+			WebElement ventanaProducto = espera.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"index\"]/div[2]/div/div/div/div/p")));
+			
+			//Comparaciones
+			Assert.assertEquals(navegador.findElement(By.xpath("//*[@id=\"index\"]/div[2]")).getText(),"Impossible to add the product to the cart.\r\n"
+					+ "textStatus: 'parsererror'\r\n"
+					+ "errorThrown: 'SyntaxError: Unexpected token '<', \"\r\n"
+					+ "\"... is not valid JSON'\r\n"
+					+ "responseText:\r\n"
+					+ "\r\n"
+					+ "Notice: Undefined offset: 1 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+					+ "\r\n"
+					+ "Notice: Undefined offset: 1 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+					+ "\r\n"
+					+ "Notice: Undefined offset: 1 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+					+ "\r\n"
+					+ "Notice: Undefined offset: 1 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+					+ "\r\n"
+					+ "Notice: Undefined offset: 1 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+					+ "\r\n"
+					+ "Notice: Undefined offset: 1 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+					+ "\r\n"
+					+ "Notice: Undefined offset: 1 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+					+ "\r\n"
+					+ "Notice: Undefined offset: 0 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+					+ "\r\n"
+					+ "Notice: Undefined offset: 0 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+					+ "\r\n"
+					+ "Notice: Undefined offset: 0 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+					+ "\r\n"
+					+ "Notice: Undefined offset: 0 in /home/testerprog/domains/automationpractice.pl/public_html/classes/Cart.php on line 1488\r\n"
+					+ "{\"products\":[{\"id\":1,\"link\":\"http:\\/\\/www.automationpractice.pl\\/index.php?id_product=1&controller=product#\\/size-s\\/color-orange\",\"quantity\":1,\"image\":\"http:\\/\\/www.automationpractice.pl\\/img\\/p\\/1\\/1-home_default.jpg\",\"image_cart\":\"http:\\/\\/www.automationpractice.pl\\/img\\/p\\/1\\/1-cart_default.jpg\",\"priceByLine\":\"$17\",\"name\":\"Faded Short Sleeve T-shirts\",\"price\":\"$17\",\"price_float\":17,\"idCombination\":1,\"idAddressDelivery\":0,\"is_gift\":false,\"hasAttributes\":true,\"attributes\":\"S, Orange\",\"hasCustomizedDatas\":false,\"customizedDatas\":[]},{\"id\":2,\"link\":\"http:\\/\\/www.automationpractice.pl\\/index.php?id_product=2&controller=product#\\/size-s\\/color-black\",\"quantity\":3,\"image\":\"http:\\/\\/www.automationpractice.pl\\/img\\/p\\/7\\/7-home_default.jpg\",\"image_cart\":\"http:\\/\\/www.automationpractice.pl\\/img\\/p\\/7\\/7-cart_default.jpg\",\"priceByLine\":\"$81\",\"name\":\"Blouse\",\"price\":\"$81\",\"price_float\":81,\"idCombination\":7,\"idAddressDelivery\":0,\"is_gift\":false,\"hasAttributes\":true,\"attributes\":\"S, Black\",\"hasCustomizedDatas\":false,\"customizedDatas\":[]}],\"discounts\":[],\"shippingCost\":\"$7\",\"shippingCostFloat\":7,\"wrappingCost\":\"$0\",\"nbTotalProducts\":4,\"total\":\"$105\",\"productTotal\":\"$98\",\"freeShipping\":\"$0\",\"freeShippingFloat\":0,\"hasError\":false}");
+			
+			//Assert.assertEquals(navegador.findElement(By.xpath("//*[@id=\"index\"]/div[2]/div/div/div/div/p")).getText(), "Impossible to add the product to the cart.");
+			
+			Assert.assertEquals(navegador.findElement(By.xpath("//*[@id=\"header\"]/div[3]/div/div/div[3]/div/a")).getText(), mensajeCarrito);
+			
+			//esto es en clase pero no puedo hacerlo porq la pagina actualmente no funciona
+			//navegador.findElement(By.xpath("blabla"));
+			Boolean ventanaDesaparecida = espera.until(ExpectedConditions.invisibilityOf(navegador.findElement(By.xpath("//*[@id=\"index\"]/div[2]/div/div/div/div/p"))));
+			
+		}
+	}
+	
+	@AfterSuite
+	public void cerrarNavegador() {
+		navegador.close();
+	}
+
+}

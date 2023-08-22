@@ -1,0 +1,60 @@
+package com.teamautomation.endtoend;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+
+public class AddingMoreItemsCart {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\Florencia Oviedo\\DriverNavegadores\\chromedriver.exe");
+		
+		//Iniciamos el navegador
+		WebDriver navegador = new ChromeDriver();
+		
+		navegador.get("https://www.winstoncastillo.com/robot-selenium/");
+		navegador.manage().window().maximize();
+		
+		List<WebElement> objetoComparar = navegador.findElements(By.cssSelector("#common-home > div.alert.alert-success.alert-dismissible"));
+		//si esta lista esta vacia, no te debe pedir loguearte sin apretar nada
+		Assert.assertTrue(objetoComparar.isEmpty());
+		
+		navegador.findElement(By.cssSelector("#content > div.row > div:nth-child(1) > div > div.button-group > button:nth-child(2)")).click();
+		
+		Thread.sleep(2000);
+		
+		String textoLogueoHome = navegador.findElement(By.cssSelector("#common-home > div.alert.alert-success.alert-dismissible")).getText();
+		
+		
+		System.out.println(textoLogueoHome);
+		
+		//click en el carro antes ver el carrito en 0
+		System.out.println(navegador.findElement(By.cssSelector("#cart > button")).getText());
+		
+		Assert.assertEquals(navegador.findElement(By.cssSelector("#cart > button")).getText(), "0 item(s) - $0.00");
+		
+		String precioConIva = navegador.findElement(By.xpath("//*[@id=\"content\"]/div[2]/div[1]/div/div[2]/p[2]")).getText();
+		
+		String [] precios = precioConIva.split("Ex",2);
+		
+		String precio =" 1 item(s) -"+ precios[0];
+		
+		//agregar mas cosas al carrito con un for
+		for(int i=1;i< 4;i++) {
+			navegador.findElement(By.cssSelector("#content > div.row > div:nth-child("+i+") > div > div.button-group > button:nth-child(1)")).click();
+		}
+		
+		//apretar add cart
+		
+		Thread.sleep(3000); //cuando sale error de loading...se usa sleep
+		//comparar si se añadio 1 item en el carrito
+		Assert.assertEquals(navegador.findElement(By.cssSelector("#cart > button")).getText().replaceAll("\\s+", ""), precio.replaceAll("\\s+", ""));
+		
+
+	}
+
+}

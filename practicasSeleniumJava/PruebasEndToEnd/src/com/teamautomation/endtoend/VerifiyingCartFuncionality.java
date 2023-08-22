@@ -1,0 +1,88 @@
+package com.teamautomation.endtoend;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+
+public class VerifiyingCartFuncionality {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\Florencia Oviedo\\DriverNavegadores\\chromedriver.exe");
+		
+		//Iniciamos el navegador
+		WebDriver navegador = new ChromeDriver();
+		
+		navegador.get("https://www.winstoncastillo.com/robot-selenium/");
+		navegador.manage().window().maximize();
+		
+		List<WebElement> objetoComparar = navegador.findElements(By.cssSelector("#common-home > div.alert.alert-success.alert-dismissible"));
+		//si esta lista esta vacia, no te debe pedir loguearte sin apretar nada
+		Assert.assertTrue(objetoComparar.isEmpty());
+		
+		navegador.findElement(By.cssSelector("#content > div.row > div:nth-child(1) > div > div.button-group > button:nth-child(2)")).click();
+		
+		Thread.sleep(2000);
+		
+		String textoLogueoHome = navegador.findElement(By.cssSelector("#common-home > div.alert.alert-success.alert-dismissible")).getText();
+		String textoFinal = textoLogueoHome.substring(0,74);//porq hay una x de mas en el final y hay q sacarlo
+		//74 porq es MacBook Pro y asi
+		
+		//comparar el texto de q te pida loguearte
+		Assert.assertEquals("You must login or create an account to save Macbook to your wish list!", textoFinal);
+		
+		System.out.println(textoLogueoHome);
+		
+		//click en el carro antes ver el carrito en 0
+		System.out.println(navegador.findElement(By.cssSelector("#cart > button")).getText());
+		
+		Assert.assertEquals(navegador.findElement(By.cssSelector("#cart > button")).getText(), "0 item(s) - $0.00");
+		
+		String precioConIva = navegador.findElement(By.xpath("//*[@id=\"content\"]/div[2]/div[1]/div/div[2]/p[2]")).getText();
+		
+		String [] precios = precioConIva.split("Ex",2);
+		
+		String precio =" 1 item(s) -"+ precios[0];
+		
+		//apretar add cart
+		navegador.findElement(By.cssSelector("#content > div.row > div:nth-child(1) > div > div.button-group > button:nth-child(1)")).click();
+		Thread.sleep(3000); //cuando sale error de loading...se usa sleep
+		//comparar si se añadio 1 item en el carrito
+		Assert.assertEquals(navegador.findElement(By.cssSelector("#cart > button")).getText().replaceAll("\\s+", ""), precio.replaceAll("\\s+", ""));
+		
+		//2do caso de prueba : borrar elementos de un carrito
+		//hacemos click en el menu del carrito
+		navegador.findElement(By.cssSelector("no lo tengo")).click();
+		//guardar el nombre del producto
+		String nombreProducto = navegador.findElement(By.cssSelector("#content > div.row > div:nth-child(1) > div > div.caption > h4 > a")).getText();
+		
+		//nombre que aparece en el carritode compras
+		String nombreProductoEliminar = navegador.findElement(By.cssSelector("----")).getText();
+		
+		Assert.assertEquals(nombreProducto, nombreProductoEliminar);
+		
+		//click en el boton sacar item
+		navegador.findElement(By.cssSelector("ddd")).click();
+		Thread.sleep(3000);
+		//que vuelva a 0 el items comprobamos
+		Assert.assertEquals(navegador.findElement(By.cssSelector("#cart > button")).getText(), "0 item(s) - $0.00");
+		Thread.sleep(3000);
+		
+		
+		//caso de prueba 3 funcionalidad del carrito
+		navegador.findElement(By.cssSelector("#cart > ul")).click();
+		String carritoProductoUno = navegador.findElement(By.cssSelector("")).getText();
+		//comparamos el nombre del producto q aparece en la lista q tenemos
+		Assert.assertEquals(nombreProducto, carritoProductoUno);
+		String precioTotalCarrito = navegador.findElement(By.cssSelector("das")).getText();
+		Assert.assertEquals(precios[0].replaceAll("\\s +",""),precioTotalCarrito.replaceAll("\\s +","") );
+		
+		
+		
+	}
+
+}

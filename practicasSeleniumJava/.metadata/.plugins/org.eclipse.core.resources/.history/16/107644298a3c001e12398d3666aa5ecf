@@ -1,0 +1,14 @@
+package testcase;
+
+import org.testng.annotations.BeforeTest;
+
+public class FormularioContacto extends Base {
+	
+	@BeforeTest
+	public void openBrowser() {
+		navegador.get("https://winstoncastillo.com/robot-selenium/index.php?route=information/contact");
+	}
+	
+	
+	
+}

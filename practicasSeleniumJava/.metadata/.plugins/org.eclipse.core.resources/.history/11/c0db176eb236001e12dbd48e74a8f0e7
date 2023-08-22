@@ -1,0 +1,28 @@
+package com.qaschool.tipsautm;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+public class ListaAleatoria {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ChromeOptions notificaciones = new ChromeOptions();
+		notificaciones.addArguments("--disable-notifications");//desactivar notificaciones de la pag
+		notificaciones.addArguments("--disable-extensions");
+		
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\Florencia Oviedo\\DriverNavegadores\\chromedriver.exe");
+		
+		//Iniciamos el navegador
+		WebDriver navegador = new ChromeDriver(notificaciones);
+		
+		navegador.get("http://www.reddit.com");
+		
+		navegador.findElement(By.name("q")).click();
+		
+		//reddit tiene una ventana emergente de si quieres tener notif
+		//para sacarlo
+	}
+
+}

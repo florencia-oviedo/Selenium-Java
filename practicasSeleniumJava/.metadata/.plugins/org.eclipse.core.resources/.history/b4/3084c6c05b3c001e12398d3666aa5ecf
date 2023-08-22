@@ -1,0 +1,71 @@
+package repository;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class HomePage {
+	
+	
+	 WebDriver driver;
+	 String modifiedXPath;
+
+	public String getModifiedXPath() {
+		return modifiedXPath;
+	}
+
+	public void setModifiedXPath(String number) {
+		String xPath = String.format("//*[@id=\"blockbestsellers\"]/li[%s]/div/div[2]/div[1]/span", number);
+		this.modifiedXPath = xPath;
+	}
+
+	public HomePage(WebDriver navegador) {
+		this.driver = navegador;
+		
+	}
+	
+	By brandLogo = By.xpath("//*[@id=\"header_logo\"]/a/img");
+	By searchBox = By.id("search_query_top");
+	By homeFeacture = By.id("blockbestsellers");
+	By listaElementos = By.tagName("li");
+	By ventanaPopUp = By.xpath("//*[@id=\"index\"]/div[2]/div/div/div/div/p");
+	By addToCartButton = By.linkText("Add to cart");
+	
+	//producto aleatorio
+	public WebElement productoAleatorioElement(String xPath) {
+		By producto = By.xpath(xPath);
+		return driver.findElement(producto);
+	}
+	
+	public WebElement addToCartElement(WebElement productoLista) {
+		return productoLista.findElement(addToCartButton);
+	}
+	
+	public WebElement brandLogoElement() {
+		return driver.findElement(brandLogo);
+	}
+	
+	//Si quieres buscar una palabra en el buscador
+	public void searchBoxQuery(String wordtoSearch) {
+		driver.findElement(searchBox).sendKeys(wordtoSearch);
+	}
+	//no se suele colocar metodos con acciones en el repository como este void
+	
+	public WebElement homeFeacture() {
+		return driver.findElement(homeFeacture);
+	}
+	
+	//cuando tienes lista de elementos no se usa findElement es un set
+	public List<WebElement> listaElementos() {
+		WebElement contenedor = this.homeFeacture();
+		return contenedor.findElements(listaElementos);
+	}
+	
+	public WebElement ventanaPopUpElement() {
+		return driver.findElement(ventanaPopUp);
+	}
+	
+	
+}

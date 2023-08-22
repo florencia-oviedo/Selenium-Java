@@ -1,0 +1,142 @@
+package testcases;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.interactions.Actions;
+import java.text.DecimalFormat;
+import org.testng.asserts.SoftAssert;
+import org.testng.ITestContext;
+
+public class CasoCarrito extends Base {
+	
+	@BeforeSuite
+	public void abrirNavegador(ITestContext context) {
+		navegador.get("http://www.automationpractice.pl/index.php");
+		navegador.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+		//Dimension driverSize = new Dimension(480,615);
+		//navegador.manage().window().setSize(driverSize);
+		context.setAttribute("WebDrive",navegador);
+	}
+	
+	@Test
+	public void elegirArticulosAzarCarritoCompras() {
+		Assert.assertEquals(navegador.getTitle(),"My Shop");
+		navegador.findElement(By.xpath("//*[@id=\"home-page-tabs\"]/li[2]/a")).click();
+		WebElement contenedorDeProductos = navegador.findElement(By.id("blockbestsellers"));
+		listaProductos = contenedorDeProductos.findElements(By.tagName("li"));
+		//System.out.println(listaProductos.size()); 6
+		
+		if(listaProductos.size()<4) {
+			cantidadLista = listaProductos.size();
+		}else {
+			cantidadLista = 3;
+		}
+		
+		for(int i=0; i<cantidadLista;i++) {
+			numeroAlAzar = (int) (Math.random()*listaProductos.size() +1);
+			if(productosAlAzar.contains(numeroAlAzar)) {
+				i--;
+			}else {
+				productosAlAzar.add(numeroAlAzar);
+			}
+		}
+		
+		productosAlAzar.forEach(System.out::println);
+		
+		
+	}
+	
+	@Test(dependsOnMethods = {"elegirArticulosAzarCarritoCompras"})
+	public void anadirProductosAlCarrito() {
+		for(int i= 0 ; i < cantidadLista; i++ ) {
+			// //*[@id="blockbestsellers"]/li[1]/div/div[2]/div[2]/a[1]/span
+			// //*[@id="blockbestsellers"]/li[2]/div/div[2]/div[2]/a[1]/span
+			//CAMBIA EN li cada add cart de cada articulo
+			String xPathElemento = String.format("//*[@id=\"blockbestsellers\"]/li[%s]/div/div[2]/div[1]/span", productosAlAzar.get(i));
+			String precioUnitarioDolar= listaProductos.get(productosAlAzar.get(i) -1).findElement(By.xpath(xPathElemento)).getText();
+			String precioUnitario = precioUnitarioDolar.replace("$", "");//saca el $ y reemplaza por nada
+			Double precio = Double.valueOf(precioUnitario);
+			System.out.println("Este es el valor del producto: "+precio);
+			totalProductos+=precio;
+			System.out.println("total de los valores: "+ totalProductos);
+			listaProductos.get(productosAlAzar.get(i) -1).findElement(By.linkText("Add to cart")).click();
+			
+			if(i==0) {
+				mensajeVentana = "Impossible to add the product to the cart.\r\n";
+				mensajeCarrito = "Cart 1 Product";
+			}else {
+				mensajeVentana = "Impossible to add the product to the cart.\r\n";
+				mensajeCarrito = String.format("Cart %s Products", i+1);
+			}
+			//hasta q este elemento no este visible no hagas nada
+			WebElement ventanaProducto = espera.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"index\"]/div[2]/div/div/div/div/p")));
+			
+			//Comparaciones
+			Assert.assertEquals(navegador.findElement(By.xpath("//*[@id=\"index\"]/div[2]/div/div/div")).getText(),"Impossible to add the product to the cart.\r\n");
+			
+			//Assert.assertEquals(navegador.findElement(By.xpath("//*[@id=\"index\"]/div[2]/div/div/div/div/p")).getText(), "Impossible to add the product to the cart.");
+			
+			Assert.assertEquals(navegador.findElement(By.xpath("//*[@id=\"header\"]/div[3]/div/div/div[3]/div/a")).getText(), mensajeCarrito);
+			
+			//esto es en clase pero no puedo hacerlo porq la pagina actualmente no funciona
+			//navegador.findElement(By.xpath("blabla"));
+			Boolean ventanaDesaparecida = espera.until(ExpectedConditions.invisibilityOf(navegador.findElement(By.xpath("//*[@id=\"index\"]/div[2]/div/div/div/div/p"))));
+			
+		}
+	}
+	
+	@Test(dependsOnMethods= {"anadirProductosAlCarrito"})
+	public void verificarProductos() {
+		//Verificaciones finales del caso de prueba
+		Actions mouseActions = new Actions(navegador);
+		WebElement cartOption = navegador.findElement(By.xpath(""));
+		mouseActions.moveToElement(cartOption).perform();
+		totalProductos += 2.00;
+		
+		//Codigo para crear dos decimales
+		DecimalFormat dosdecimalformat = new DecimalFormat("#.00");
+		String totalEnString = String.format("$%s", dosdecimalformat.format(totalProductos));
+		totalEnString = totalEnString.replace(",", ".");
+		
+		WebElement ventanaTotal = espera.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("dad")));
+		Assert.assertEquals(navegador.findElement(By.xpath("prueba")).getText(), totalEnString);
+		
+		WebElement botonCheckout = espera.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"button_order_cart\"]")));
+		
+		//hace que la prueba continue a pesar del error y guarda esa info
+		SoftAssert validaciones = new SoftAssert();
+		//validaciones.assertTrue(false);
+		//validaciones.assertTrue(true);
+		//validaciones.assertAll();
+		
+	}
+	
+	@Test(dependsOnMethods = {"verificarProductos"})
+	public void verificarCheckout() {
+		navegador.findElement(By.xpath("//*[@id=\\\"button_order_cart\\\"]")).click();
+		Assert.assertEquals(navegador.getTitle(), "Order - My Shop");
+		String primerTitulo = navegador.findElement(By.xpath("//*[@id=\"cart_title\"]")).getText();
+		//SHOPPING-CART SUMMARY queremos recuperar ese texto
+		primerTitulo = primerTitulo.substring(0,21);
+		Assert.assertEquals(primerTitulo, "SHOPPING-CART SUMMARY");
+		Assert.assertEquals(navegador.findElement(By.xpath("//*[@id=\"total_price\"]")).getText(), totalEnString);
+		
+		navegador.findElement(By.linkText("Proceed to checkout")).click();
+		Assert.assertEquals(navegador.getTitle(), "Login - My Shop");
+	}
+	
+	
+	@AfterSuite
+	public void cerrarNavegador() {
+		navegador.close();
+	}
+
+}

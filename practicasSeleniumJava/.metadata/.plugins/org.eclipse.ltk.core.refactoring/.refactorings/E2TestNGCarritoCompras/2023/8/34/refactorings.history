@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;repository.HomePage&apos; to &apos;HomePageRepository&apos;&#x0D;&#x0A;- Original project: &apos;E2TestNGCarritoCompras&apos;&#x0D;&#x0A;- Original element: &apos;repository.HomePage&apos;&#x0D;&#x0A;- Renamed element: &apos;repository.HomePageRepository&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;HomePage&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;repository{HomePage.java[HomePage" matchStrategy="1" name="HomePageRepository" qualified="false" references="true" similarDeclarations="false" stamp="1692207526949" textual="false" version="1.0"/>
+</session>

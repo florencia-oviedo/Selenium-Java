@@ -1,0 +1,12 @@
+package reader;
+import java.util.ArrayList;
+
+public class CsvFileReader {
+	
+	
+	public void getData() {
+		//Lectura de la data
+		ArrayList<String> dataRead =new ArrayList<String>();
+		File archivo = new File("src/ejemplo-uno.csv");
+	}
+}

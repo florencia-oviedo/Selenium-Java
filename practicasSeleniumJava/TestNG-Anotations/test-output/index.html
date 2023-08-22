@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <meta charset='utf-8'>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports1.css" rel="stylesheet" id="ultra" />
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" id="retro" disabled="false"/>
+    <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
+      <br/>
+      <span class="top-banner-font-1">1 suite</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" title="Collapse/expand all the suites" class="collapse-all-link">
+          <img src="collapseall.gif" class="collapse-all-icon">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" panel-name="suite-Suite_de_Pruebas" class="navigator-link">
+              <span class="suite-name border-passed">Suite de Pruebas</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" panel-name="test-xml-Suite_de_Pruebas" class="navigator-link ">
+                    <span>C:\Users\Florencia Oviedo\eclipse-workspace\TestNG-Anotations\parametros.xml</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="testlist-Suite_de_Pruebas" class="navigator-link ">
+                    <span class="test-stats">2 tests</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="group-Suite_de_Pruebas" class="navigator-link ">
+                    <span>2 groups</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="times-Suite_de_Pruebas" class="navigator-link ">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="reporter-Suite_de_Pruebas" class="navigator-link ">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="ignored-methods-Suite_de_Pruebas" class="navigator-link ">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="chronological-Suite_de_Pruebas" class="navigator-link ">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">14 methods,   14 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-Suite_de_Pruebas" class="hide-methods passed suite-Suite_de_Pruebas"> (hide)</a> <!-- hide-methods passed suite-Suite_de_Pruebas -->
+                      <a href="#" panel-name="suite-Suite_de_Pruebas" class="show-methods passed suite-Suite_de_Pruebas"> (show)</a> <!-- show-methods passed suite-Suite_de_Pruebas -->
+                    </span>
+                    <div class="method-list-content passed suite-Suite_de_Pruebas">
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite_de_Pruebas" title="anotations.SegundoSet" class="method navigator-link" hash-for-method="clickAlCarrito(Camisa, $10,00)">clickAlCarrito(Camisa, $10,00)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite_de_Pruebas" title="anotations.SegundoSet" class="method navigator-link" hash-for-method="clickAlCarrito(Pantalon, $14,00)">clickAlCarrito(Pantalon, $14,00)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite_de_Pruebas" title="anotations.SegundoSet" class="method navigator-link" hash-for-method="clickAlCarrito(Remera, $5,00)">clickAlCarrito(Remera, $5,00)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite_de_Pruebas" title="anotations.SegundoSet" class="method navigator-link" hash-for-method="clickAlHome">clickAlHome</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite_de_Pruebas" title="anotations.SegundoSet" class="method navigator-link" hash-for-method="clickAlUsuario(admin, 12345)">clickAlUsuario(admin, 12345)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite_de_Pruebas" title="anotations.SegundoSet" class="method navigator-link" hash-for-method="pruebaCinco">pruebaCinco</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite_de_Pruebas" title="anotations.SegundoSet" class="method navigator-link" hash-for-method="pruebaCuatro">pruebaCuatro</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite_de_Pruebas" title="anotations.AnotationesBase" class="method navigator-link" hash-for-method="pruebaDos">pruebaDos</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite_de_Pruebas" title="anotations.SegundoSet" class="method navigator-link" hash-for-method="pruebaTres">pruebaTres</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite_de_Pruebas" title="anotations.AnotationesBase" class="method navigator-link" hash-for-method="pruebaUno">pruebaUno</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite_de_Pruebas" title="anotations.TercerSet" class="method navigator-link" hash-for-method="tercerSetPruebaCuarta">tercerSetPruebaCuarta</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite_de_Pruebas" title="anotations.TercerSet" class="method navigator-link" hash-for-method="tercerSetPruebaDos">tercerSetPruebaDos</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite_de_Pruebas" title="anotations.TercerSet" class="method navigator-link" hash-for-method="tercerSetPruebaTres">tercerSetPruebaTres</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite_de_Pruebas" title="anotations.TercerSet" class="method navigator-link" hash-for-method="tercerSetPruebaUno">tercerSetPruebaUno</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-Suite_de_Pruebas -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-Suite_de_Pruebas" class="panel Suite_de_Pruebas">
+          <div class="suite-Suite_de_Pruebas-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">anotations.TercerSet</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="tercerSetPruebaCuarta">
+                  </a> <!-- tercerSetPruebaCuarta -->
+                  <span class="method-name">tercerSetPruebaCuarta</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="tercerSetPruebaDos">
+                  </a> <!-- tercerSetPruebaDos -->
+                  <span class="method-name">tercerSetPruebaDos</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="tercerSetPruebaTres">
+                  </a> <!-- tercerSetPruebaTres -->
+                  <span class="method-name">tercerSetPruebaTres</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="tercerSetPruebaUno">
+                  </a> <!-- tercerSetPruebaUno -->
+                  <span class="method-name">tercerSetPruebaUno</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Suite_de_Pruebas-class-passed -->
+          <div class="suite-Suite_de_Pruebas-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">anotations.SegundoSet</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="clickAlCarrito(Camisa, $10,00)">
+                  </a> <!-- clickAlCarrito(Camisa, $10,00) -->
+                  <span class="method-name">clickAlCarrito</span>
+                  <span class="parameters">(Camisa,$10,00)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="clickAlCarrito(Pantalon, $14,00)">
+                  </a> <!-- clickAlCarrito(Pantalon, $14,00) -->
+                  <span class="method-name">clickAlCarrito</span>
+                  <span class="parameters">(Pantalon,$14,00)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="clickAlCarrito(Remera, $5,00)">
+                  </a> <!-- clickAlCarrito(Remera, $5,00) -->
+                  <span class="method-name">clickAlCarrito</span>
+                  <span class="parameters">(Remera,$5,00)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="clickAlHome">
+                  </a> <!-- clickAlHome -->
+                  <span class="method-name">clickAlHome</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="clickAlUsuario(admin, 12345)">
+                  </a> <!-- clickAlUsuario(admin, 12345) -->
+                  <span class="method-name">clickAlUsuario</span>
+                  <span class="parameters">(admin,12345)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="pruebaCinco">
+                  </a> <!-- pruebaCinco -->
+                  <span class="method-name">pruebaCinco</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="pruebaCuatro">
+                  </a> <!-- pruebaCuatro -->
+                  <span class="method-name">pruebaCuatro</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="pruebaTres">
+                  </a> <!-- pruebaTres -->
+                  <span class="method-name">pruebaTres</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Suite_de_Pruebas-class-passed -->
+          <div class="suite-Suite_de_Pruebas-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">anotations.AnotationesBase</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="pruebaDos">
+                  </a> <!-- pruebaDos -->
+                  <span class="method-name">pruebaDos</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="pruebaUno">
+                  </a> <!-- pruebaUno -->
+                  <span class="method-name">pruebaUno</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Suite_de_Pruebas-class-passed -->
+        </div> <!-- panel Suite_de_Pruebas -->
+        <div panel-name="test-xml-Suite_de_Pruebas" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">C:\Users\Florencia Oviedo\eclipse-workspace\TestNG-Anotations\parametros.xml</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite name=&quot;Suite de Pruebas&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
+  &lt;parameter name=&quot;password&quot; value=&quot;12345&quot;/&gt;
+  &lt;parameter name=&quot;username&quot; value=&quot;admin&quot;/&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;Casos de prueba anotacion&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;anotations.AnotationesBase&quot;/&gt;
+      &lt;class name=&quot;anotations.SegundoSet&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Casos de prueba anotacion --&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;Casos de prueba nuevos&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;anotations.TercerSet&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Casos de prueba nuevos --&gt;
+&lt;/suite&gt; &lt;!-- Suite de Pruebas --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-Suite_de_Pruebas" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for Suite de Pruebas</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">Casos de prueba anotacion (2 classes)</span>
+              </li>
+              <li>
+                <span class="test-name">Casos de prueba nuevos (1 class)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-Suite_de_Pruebas" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for Suite de Pruebas</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="test-group">
+              <span class="test-group-name">functional</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">clickAlCarrito</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">pruebaUno</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">tercerSetPruebaTres</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
+            <div class="test-group">
+              <span class="test-group-name">smoke</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">tercerSetPruebaDos</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">tercerSetPruebaTres</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-Suite_de_Pruebas" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for Suite de Pruebas</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_Suite_de_Pruebas');
+function tableData_Suite_de_Pruebas() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(14);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'pruebaUno')
+data.setCell(0, 2, 'anotations.AnotationesBase')
+data.setCell(0, 3, 8);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'clickAlHome')
+data.setCell(1, 2, 'anotations.SegundoSet')
+data.setCell(1, 3, 2);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'pruebaDos')
+data.setCell(2, 2, 'anotations.AnotationesBase')
+data.setCell(2, 3, 2);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'clickAlCarrito')
+data.setCell(3, 2, 'anotations.SegundoSet')
+data.setCell(3, 3, 2);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'pruebaTres')
+data.setCell(4, 2, 'anotations.SegundoSet')
+data.setCell(4, 3, 2);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'tercerSetPruebaDos')
+data.setCell(5, 2, 'anotations.TercerSet')
+data.setCell(5, 3, 2);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'clickAlUsuario')
+data.setCell(6, 2, 'anotations.SegundoSet')
+data.setCell(6, 3, 1);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'pruebaCinco')
+data.setCell(7, 2, 'anotations.SegundoSet')
+data.setCell(7, 3, 1);
+data.setCell(8, 0, 8)
+data.setCell(8, 1, 'pruebaCuatro')
+data.setCell(8, 2, 'anotations.SegundoSet')
+data.setCell(8, 3, 1);
+data.setCell(9, 0, 9)
+data.setCell(9, 1, 'clickAlCarrito')
+data.setCell(9, 2, 'anotations.SegundoSet')
+data.setCell(9, 3, 1);
+data.setCell(10, 0, 10)
+data.setCell(10, 1, 'clickAlCarrito')
+data.setCell(10, 2, 'anotations.SegundoSet')
+data.setCell(10, 3, 1);
+data.setCell(11, 0, 11)
+data.setCell(11, 1, 'tercerSetPruebaTres')
+data.setCell(11, 2, 'anotations.TercerSet')
+data.setCell(11, 3, 1);
+data.setCell(12, 0, 12)
+data.setCell(12, 1, 'tercerSetPruebaCuarta')
+data.setCell(12, 2, 'anotations.TercerSet')
+data.setCell(12, 3, 1);
+data.setCell(13, 0, 13)
+data.setCell(13, 1, 'tercerSetPruebaUno')
+data.setCell(13, 2, 'anotations.TercerSet')
+data.setCell(13, 3, 1);
+window.suiteTableData['Suite_de_Pruebas']= { tableData: data, tableDiv: 'times-div-Suite_de_Pruebas'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 26 ms</span>
+              <div id="times-div-Suite_de_Pruebas">
+              </div> <!-- times-div-Suite_de_Pruebas -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-Suite_de_Pruebas" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for Suite de Pruebas</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-Suite_de_Pruebas" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">0 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-Suite_de_Pruebas" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">anotations.AnotationesBase</div> <!-- chronological-class-name -->
+              <div class="configuration-suite before">
+                <span class="method-name">codigoAntesSuite</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-suite before -->
+              <div class="configuration-test before">
+                <span class="method-name">antesSetTest</span>
+                <span class="method-start">45 ms</span>
+              </div> <!-- configuration-test before -->
+              <div class="configuration-class before">
+                <span class="method-name">codigoAntesClase</span>
+                <span class="method-start">65 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="configuration-method before">
+                <span class="method-name">antesDeCadaMetodo</span>
+                <span class="method-start">81 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">pruebaUno</span>
+                <span class="method-start">84 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">despuesDeCadaMetodo</span>
+                <span class="method-start">96 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">antesDeCadaMetodo</span>
+                <span class="method-start">108 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">pruebaDos</span>
+                <span class="method-start">109 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">despuesDeCadaMetodo</span>
+                <span class="method-start">113 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-class after">
+                <span class="method-name">codigoDespuesClase</span>
+                <span class="method-start">114 ms</span>
+              </div> <!-- configuration-class after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">anotations.SegundoSet</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">clickAlCarrito(Camisa, $10,00)</span>
+                <span class="method-start">122 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">clickAlCarrito(Pantalon, $14,00)</span>
+                <span class="method-start">126 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">clickAlCarrito(Remera, $5,00)</span>
+                <span class="method-start">129 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">clickAlHome</span>
+                <span class="method-start">132 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">clickAlUsuario(admin, 12345)</span>
+                <span class="method-start">138 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">pruebaCinco</span>
+                <span class="method-start">141 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">pruebaTres</span>
+                <span class="method-start">144 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">pruebaCuatro</span>
+                <span class="method-start">148 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">anotations.AnotationesBase</div> <!-- chronological-class-name -->
+              <div class="configuration-test after">
+                <span class="method-name">despuesSetTest</span>
+                <span class="method-start">150 ms</span>
+              </div> <!-- configuration-test after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">anotations.TercerSet</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">tercerSetPruebaCuarta</span>
+                <span class="method-start">247 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">tercerSetPruebaDos</span>
+                <span class="method-start">250 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">tercerSetPruebaTres</span>
+                <span class="method-start">254 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">tercerSetPruebaUno</span>
+                <span class="method-start">256 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">anotations.AnotationesBase</div> <!-- chronological-class-name -->
+              <div class="configuration-suite after">
+                <span class="method-name">codigoDespuesSuite</span>
+                <span class="method-start">263 ms</span>
+              </div> <!-- configuration-suite after -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+<script type="text/javascript" src="testng-reports2.js"></script>
+</html>

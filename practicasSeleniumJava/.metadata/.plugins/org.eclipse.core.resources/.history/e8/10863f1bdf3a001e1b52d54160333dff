@@ -1,0 +1,23 @@
+package iframes;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+public class IframesPruebas {
+
+	WebDriver navegador = new ChromeDriver();
+	
+	@Test
+	public void trabajarConIframe() {
+		
+		navegador.get("https://www.winstoncastillo.com/ejercicios/atoc.html");
+		navegador.manage().window().maximize();
+		navegador.findElement(By.xpath("/html/body/div[2]/a")).click();
+		 
+	}
+
+
+}
+

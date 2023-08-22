@@ -1,0 +1,26 @@
+package repository;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class HomePage {
+	
+	
+	 WebDriver driver;
+
+	public HomePage(WebDriver navegador) {
+		this.driver = navegador;
+		
+	}
+	
+	By brandLogo = By.xpath("//*[@id=\"header_logo\"]/a/img");
+	By searchBox = By.id("search_query_top");
+	By homeFeacture = By.id("blockbestsellers");
+	By listaElemento = By.tagName("li");
+	By ventanaPopUp = By.xpath("//*[@id=\"index\"]/div[2]/div/div/div/div/p");
+	
+	public WebElement brandLogoElement() {
+		return driver.findElement(brandLogo);
+	}
+}

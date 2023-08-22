@@ -1,0 +1,21 @@
+package testcases;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import java.util.List;
+import org.openqa.selenium.WebElement;
+import java.util.ArrayList;
+
+
+public class Base {
+	
+	WebDriver navegador  = new ChromeDriver();
+	List<WebElement> listaProductos = new ArrayList<WebElement>();
+	int cantidadLista;
+	int numeroAlAzar;
+	List<Integer> productosAlAzar = new ArrayList<Integer>();
+	double totalProductos=0;
+	
+	String mensajeVentana;
+	String mensajeCarrito;
+
+}
